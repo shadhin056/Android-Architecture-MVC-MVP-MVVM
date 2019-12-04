@@ -18,30 +18,36 @@ public class CountriesController {
     private CountriesService service;
 
     public CountriesController(MVCActivity view) {
-        this.view=view;
-        service=new CountriesService();
+        this.view = view;
+        service = new CountriesService();
         fetchCountries();
 
     }
+
     private void fetchCountries() {
         service.getCountries()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableSingleObserver<List<CountryModel>>(){
+                .subscribeWith(new DisposableSingleObserver<List<CountryModel>>() {
 
                     @Override
                     public void onSuccess(List<CountryModel> value) {
-                        List<String> countriesName=new ArrayList<>();
-                        for(CountryModel countryModelName : value){
+                        List<String> countriesName = new ArrayList<>();
+                        for (CountryModel countryModelName : value) {
                             countriesName.add(countryModelName.countryName);
                         }
+                        //view.onError();
                         view.setValue(countriesName);
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
+                        view.onError();
                     }
-                } );
+                });
+    }
+
+    public void refresh() {
+        fetchCountries();
     }
 }

@@ -5,28 +5,46 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".mvc.MVCActivity">
+
     <LinearLayout
-        android:background="#DAD5D5"
-        android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#DAD5D5"
+        android:orientation="vertical">
+
         <TextView
-            android:textSize="18sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:text="Country Name Using MVC Architecture"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:textSize="18sp">
 
         </TextView>
+
         <ListView
             android:id="@+id/lvlist"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FCFCFC"
             android:layout_margin="10dp"
-            >
+            android:background="#FCFCFC">
 
         </ListView>
+
+        <Button
+
+            android:id="@+id/btnRetry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:text="Retry">
+
+        </Button>
+
+        <ProgressBar
+            android:id="@+id/pb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></ProgressBar>
     </LinearLayout>
 
 </LinearLayout>
