@@ -22,17 +22,18 @@ import static android.widget.AdapterView.*;
 public class MVCActivity extends AppCompatActivity {
     private List<String> listValues=new ArrayList<>();
     private ArrayList<String> vals=new ArrayList<>();
-
     private ArrayAdapter<String> adapter;
     private ListView lvlist;
+    private CountriesController controller;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mvc);
+        controller=new CountriesController(this);
         setTitle("MVC");
         init();
         setAdapter();
-        setStaticValue();
+        //setStaticValue();
     }
 
     private void setStaticValue() {
@@ -46,11 +47,16 @@ public class MVCActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
+    public void setValue(List <String> value) {
+        listValues.clear();
+        listValues.addAll(value);
+        adapter.notifyDataSetChanged();
+    }
+
     private void setAdapter() {
         adapter = new ArrayAdapter<>(this,R.layout.row_country_name,R.id.txtlistText,listValues);
         lvlist.setAdapter(adapter);
         lvlist.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(MVCActivity.this,"You Clicked + "+listValues.get(position),Toast.LENGTH_LONG).show();
